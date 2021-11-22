@@ -40,7 +40,7 @@ def products(request):
     # ]
 
     content = {
-            'title': 'Продукты',
+            'title': 'Продукт',
             'links_menu': links_menu,
             'products':products,
             'menu':menu,

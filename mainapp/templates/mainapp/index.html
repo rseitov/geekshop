@@ -5,17 +5,15 @@
     {% block menu %}
 		<div class="slider">
 			<div class="header clearfix">
-				<a href="{% url 'index' %}" class="logo"></a>
-
+				<a href="index.html" class="logo"></a>
 				{% include 'mainapp/includes/inc__main_menu.html' %}
-
 				<a href="#" class="search"></a>
 			</div>
 			<div class="text-slider">
-				<h3 class="green">тенденции {% now "Y" %}</h3>
+				<h3 class="green">тенденции</h3>
 				<h3 class="big"> удобные стулья</h3>
 				<p>Новый уровень комфорта. Отличные характеристики.</p>
-				<a href="#" class="button-order">заказать <img src="img/arrow.png'" alt=""></a>
+				<a href="#" class="button-order">заказать <img src="img/arrow.png" alt=""></a>
 			</div>
 			<div class="navi">
 				<a href="#"></a><a href="#"></a><a href="#"></a>
@@ -31,28 +29,24 @@
 			<div class="clearfix">
 			</div>
 			<div class="tab-content">
-				<div class="block">
-					<a href="#"><img src="img/product-1.jpg" alt="">
-						<div class="text">
-							<img src="img/icon-hover.png" alt="img">
-							<h4>Отличный стул</h4>
-							<p>Расположитесь комфортно. </p>
-						</div>
+				{% for product in products %}
+				  <div class="block">
+					<a href="#">
+					  <img src="/media/{{ product.image }}" alt="{{ product.short_desc }}">
+					  <div class="text">
+						<h3>{{ product.category.name }}</h3>
+						<h4>{{ product.name }}</h4>
+						<p>{{ product.description }}</p>
+					  </div>
 					</a>
-				</div>
-				<div class="block">
-					<a href="#"><img src="img/product-2.jpg" alt="">
-						<div class="text">
-							<img src="img/icon-hover.png" alt="">
-							<h4>Стул повышенного качества</h4>
-							<p>Не оторваться. </p>
-						</div>
-					</a>
-				</div>
+				  </div>
+				{% endfor %}
+
 			</div>
 		</div>
 
 		<div class="clr"></div>
 
 	</div>
-   {% endblock %}
+
+{% endblock %}

@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.templatetags.static import static
 import os
@@ -57,3 +58,6 @@ def main(request):
     products = Products.objects.all()[:4]
     content = {'title': title, 'products': products, 'menu': menu}
     return render(request, 'mainapp/index.html', content)
+
+
+

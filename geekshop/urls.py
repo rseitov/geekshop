@@ -24,7 +24,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main, name='index'),
     path('products/', include('mainapp.urls', namespace='products')),
+    path('auth/', include('authnapp.urls', namespace='auth')),
     path('contact/', contact, name='contact'),
+
+
 ]
 
 if settings.DEBUG:

@@ -9,5 +9,26 @@
         </a>
 
     </li>
+
     {% endfor %}
+
+    {% if user.is_authenticated %}
+
+    <li>
+        <a href="{% url 'auth:edit' %}">
+            {{ user.first_name }}
+        </a>
+    </li>
+    {% endif %}
+
+
+    {% if user.is_authenticated %}
+    <li>
+        <a href="{% url 'auth:logout' %}">Выйти</a>
+    </li>
+    {% else %}
+    <li>
+        <a href="{% url 'auth:login' %}">Войти</a>
+    </li>
+    {% endif %}
 </ul>

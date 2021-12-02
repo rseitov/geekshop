@@ -15,8 +15,8 @@
     {% if user.is_authenticated %}
 
     <li>
-        <a href="{% url 'auth:edit' %}">
-            {{ user.first_name }}
+        <a href="{% url 'auth:edit' %}">Профиль
+            {{ user.first_name}}
         </a>
     </li>
     {% endif %}
@@ -32,3 +32,8 @@
     </li>
     {% endif %}
 </ul>
+   <a href="{% url 'basket:view' %}" class="basket">
+    <span>
+        {% if basket %} {{ basket|length }} {% endif %}
+    </span>
+</a>

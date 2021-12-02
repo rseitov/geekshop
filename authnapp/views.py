@@ -43,10 +43,11 @@ def register(request):
     content = {'title':title, 'register_form':register_form }
     return render(request, 'authnapp/register.html', content)
 
+
 def edit(request):
     title = 'редактирование'
 
-    if request.method == "POST":
+    if request.method == 'POST':
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
         if edit_form.is_valid():
             edit_form.save()
@@ -55,6 +56,7 @@ def edit(request):
         edit_form = ShopUserEditForm(instance=request.user)
 
     content = {'title': title, 'edit_form': edit_form}
+
     return render(request, 'authnapp/edit.html', content)
 
 

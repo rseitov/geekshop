@@ -18,6 +18,7 @@ class Products(models.Model):
     image = models.ImageField( blank=True)
     short_desc = models.CharField(verbose_name="краткое описание товара", max_length=60, blank=True)
     descritpion = models.TextField(verbose_name="описание продукта", blank=True)
+    is_active = models.BooleanField(verbose_name='активна', default=True)
     price = models.DecimalField(verbose_name="цена продукта", max_digits=8, decimal_places=2, default=0)
     quantity = models.PositiveIntegerField(verbose_name="количество на складе", default=0)
 

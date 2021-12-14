@@ -4,7 +4,14 @@
 
 {% block content %}
   <div class="user_delete">
-    Уверены, что хотите удалить {{ user_to_delete.username }} 
+
+    <form action="{% url 'admin:ca{% extends 'adminapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <div class="user_delete">
+    Уверены, что хотите удалить {{ user_to_delete.username }}
     {% if user_to_delete.first_name %}
       ({{ user_to_delete.first_name|title }}</b>
       {% if user_to_delete.last_name %}
@@ -19,6 +26,17 @@
     </form>
     <button class="btn btn-success">
       <a href="{% url 'admin:users' %}">
+        Отмена
+      </a>
+    </button>
+  </div>
+{% endblock %}tegory_delete' %}"
+          method="post">
+      {% csrf_token %}
+      <input class="btn btn-danger" type="submit" value="удалить">
+    </form>
+    <button class="btn btn-success">
+      <a href="{% url 'admin:category_delete' %}">
         Отмена
       </a>
     </button>

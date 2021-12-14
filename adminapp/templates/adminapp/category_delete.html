@@ -1,0 +1,15 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <div class="user_delete">
+
+    <form action="{% url 'admin:product_delete' object.pk %}"
+          method="post">
+      {% csrf_token %}
+      <input class="btn btn-danger" type="submit" value="удалить">
+    </form>
+
+  </div>
+{% endblock %}

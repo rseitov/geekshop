@@ -5,8 +5,10 @@ import os
 import json
 from mainapp.models import  Products, ProductCategory
 from basketapp.models import Basket
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 import random
+
 module_dir = os.path.dirname(__file__,)
 
 # links_menu = [
@@ -42,7 +44,8 @@ def get_same_products(hot_product):
     return same_products
 
 def products(request, pk=None):
-    print(pk)
+    page = request.GET['page']
+
     title = "Продукты"
     links_menu = ProductCategory.objects.all()
 
@@ -57,14 +60,24 @@ def products(request, pk=None):
             category = {'name':'все'}
         else:
             category = get_object_or_404(ProductCategory, pk=pk)
-            products = Products.objects.filter(category__pk=pk).order_by('price')
+            products = Products.objects.filter(category__pk=pk, is_active=True).order_by('price')
+
+        paginator = Paginator(products, 2)
+
+        try:
+            products_paginator = paginator.page(page)
+        except PageNotAnInteger:
+            products_paginator = paginator.page(1)
+        except EmptyPage:
+            products_paginator = paginator.page(paginator.num_pages)
+
 
         content = {
 
             "title": title,
             "links_menu":links_menu,
             "category":category,
-            "products": products,
+            "products": products_paginator,
             "menu": menu,
             "basket":basket,
         }
